@@ -1,5 +1,6 @@
 <?php
 include_once("../Layout/Header.php");
+require_once("../Backend/dbConnection.php");
 //Before test can begin show an 'options' menu
 //Time
 //Category
@@ -7,7 +8,7 @@ include_once("../Layout/Header.php");
 //Type of question
 //All of these can be changed when deciding the difficulty
 
-
+//function that after submit button is clicked hides the form
 ?>
 <style>
     #secondSelectionContainer {
