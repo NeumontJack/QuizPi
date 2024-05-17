@@ -11,20 +11,29 @@ include_once("../Layout/Header.php");
 <h1>Welcome to the QuizPi</h1>
 <br/>
 <p>Think you know your stuff? Login to play our amazing and wacky quizzes and see your score!</p>
-<form action="userHome.php" method="post">
+<form action="../BackEnd/QuizQueries.php" method="post">
 Username: <input type="text" name="name"><br>
 Password: <input type="password" name="password"><br>
 <input type="submit">
 send USER to respective homepage
 </form>
+
 <br/>
-<form action="adminHome.php" method="post">
+
+<a href="SignUp.php">Sign Up Here</a>
+
+<br/>
+
+
+<!--<form action="adminHome.php" method="post">
 Username: <input type="text" name="name"><br>
 Password: <input type="password" name="password"><br>
 <input type="submit">
 send ADMIN to respective homepage
 </form>
+
 <br/>
+
 <p>Orrrrrrr, create an account because it's your first time with us!</p>
 <form action="" method="post">
 Full Name: <input type="text" name="name"><br>
@@ -32,9 +41,7 @@ Username: <input type="text" name="username"><br>
 Password: <input type="password" name="password"><br>
 <input type="submit">
 send person to respective homepage, while logging them in
-</form>
-
-
+</form>-->
 
 Modal display here would super cool, some pictures of the project
 

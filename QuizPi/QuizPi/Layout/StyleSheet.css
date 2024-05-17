@@ -1,0 +1,19 @@
+﻿body {
+}
+
+.userName {
+    text-align: center
+}
+
+.proPic {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.scoreDiv {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
