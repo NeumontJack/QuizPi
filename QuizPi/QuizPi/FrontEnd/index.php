@@ -1,5 +1,6 @@
 <?php
 include_once("../Layout/Header.php");
+include("../Layout/Menu.php");
 //It's just one form, but a function
 //HERE
 //After SUBMIT click, check if person is a USER or ADMIN
