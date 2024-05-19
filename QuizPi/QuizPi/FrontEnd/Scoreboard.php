@@ -2,7 +2,8 @@
 include_once("../Layout/Header.php");
 //Leaderboard that displays the top 10 scores ranked from highest to lowest
 //doesn't matter the category or difficulty 
-//Later can create different functions to sort/filter based on category, time, etc. 
+//Later can create different functions to sort/filter based on category, time, etc.
+include("../Layout/UserMenu.php");
 include('../BackEnd/dbConnection.php');
 
 $dbConn = dbconnect();
@@ -17,7 +18,7 @@ if ($feedBack) {
 }
 mysqli_close($dbConn);
 
-echo var_dump($rowArray);
+//echo var_dump($rowArray);
 //echo count($rowArray);
 ?>
 
@@ -28,7 +29,7 @@ echo var_dump($rowArray);
         <th>Score</th>
     </tr>
     <?php foreach ($rowArray as $i): ?>
-        <?= $int += 1 ?>
+        <?php $int += 1 ?>
         <tr>
             <td><?= $int ?></td>
             <td><?= $i->userN?></td>
