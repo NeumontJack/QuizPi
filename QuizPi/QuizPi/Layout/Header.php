@@ -15,7 +15,7 @@
     <title>QuizPi</title>
     <a href="/FrontEnd/userHome.php">Home</a>(Will send to user homepage at the moment)
     <a href="/FrontEnd/Scoreboard.php">Scoreboard</a>
-    <a href="/FrontEnd/Quiz.php">Game</a>
+    <a href="/FrontEnd/Options.php">Settings</a>
     <link rel="stylesheet" href="../Layout/StyleSheet.css">
 </head>
 <body>

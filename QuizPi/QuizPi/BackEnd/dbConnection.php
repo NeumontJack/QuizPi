@@ -1,9 +1,15 @@
 <?php
 
+//DEFINE("SERVER", "localhost");
+//DEFINE("USERN", "root");
+//DEFINE("PASS", "Dr.Phid21@");
+//DEFINE("DBNAME", "quizusers"); // Need to determine what the db name to be
+
 DEFINE("SERVER", "localhost");
 DEFINE("USERN", "root");
-DEFINE("PASS", "Dr.Phid21@");
-DEFINE("DBNAME", "quizusers"); // Need to determine what the db name to be
+DEFINE("PASS", "Y2KBest!");
+DEFINE("DBNAME", "quizusers");
+
 
 // Try connection with db
 function dbconnect()
@@ -74,5 +80,21 @@ $query = "SELECT JSON_OBJECT(
         'fiction', books.fiction,
         'checkedout', books.checkedout)
         from books";
+
+
+function getQuiz($dbConn, $difficulty, $category, $amount)
+{
+
+    $query = "SELECT JSON_OBJECT(
+            'id', id,
+            'question', question,
+            'difficulty', difficulty,
+            'answer', answer,
+            'category', category,
+            'wrong_answers', wrong_answers)
+            from food WHERE difficulty = " . $difficulty . " and category = '" . $category . "' LIMIT " . $amount . "";
+
+    return mysqli_query($dbConn, $query);
+}
 
 ?>
