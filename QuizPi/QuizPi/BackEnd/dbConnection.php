@@ -5,10 +5,15 @@
 //DEFINE("PASS", "Dr.Phid21@");
 //DEFINE("DBNAME", "quizusers"); // Need to determine what the db name to be
 
+//DEFINE("SERVER", "localhost");
+//DEFINE("USERN", "root");
+//DEFINE("PASS", "Y2KBest!");
+//DEFINE("DBNAME", "quizusers");
+
 DEFINE("SERVER", "localhost");
 DEFINE("USERN", "root");
-DEFINE("PASS", "Y2KBest!");
-DEFINE("DBNAME", "quizusers");
+DEFINE("PASS", "Nu201251623!");
+DEFINE("DBNAME", "quizpi");
 
 
 // Try connection with db
@@ -69,17 +74,6 @@ function addNewUser($dbConn, $userN, $pass) {
 
     return mysqli_query($dbConn, $query);
 }
-
-
-
-$query = "SELECT JSON_OBJECT(
-        'bookId', books.bookid,
-        'bookN', books.bookname,
-        'author', books.author,
-        'publisher', books.publisher,
-        'fiction', books.fiction,
-        'checkedout', books.checkedout)
-        from books";
 
 
 function getQuiz($dbConn, $difficulty, $category, $amount)

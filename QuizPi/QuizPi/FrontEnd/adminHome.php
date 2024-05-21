@@ -3,7 +3,7 @@ session_start();
 
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || !$_SESSION['is_admin']) {
-    header("Location: login.php");
+    header("Location: userHome.php");
     exit();
 }
 
