@@ -8,7 +8,14 @@ include("../Layout/Menu.php");
 //if not sucessful send an alert for person, "refresh page"
 //regex? to check password is certain length, characters, special characters, or nums in it
 //Create an account can sign a person in and give either admin or user permission depening on credentials
+
+
+//if (isset($_SESSION['userInfo'])) {
+//    header("Location: UserPage.php");
+//}
+
 ?>
+
 <h1>Welcome to the QuizPi</h1>
 <br/>
 <p>Think you know your stuff? Login to play our amazing and wacky quizzes and see your score!</p>

@@ -1,19 +1,19 @@
 <?php
 
-//DEFINE("SERVER", "localhost");
-//DEFINE("USERN", "root");
-//DEFINE("PASS", "Dr.Phid21@");
-//DEFINE("DBNAME", "quizusers"); // Need to determine what the db name to be
+DEFINE("SERVER", "localhost");
+DEFINE("USERN", "root");
+DEFINE("PASS", "Dr.Phid21@");
+DEFINE("DBNAME", "quizusers"); // Need to determine what the db name to be
 
 //DEFINE("SERVER", "localhost");
 //DEFINE("USERN", "root");
 //DEFINE("PASS", "Y2KBest!");
 //DEFINE("DBNAME", "quizusers");
 
-DEFINE("SERVER", "localhost");
-DEFINE("USERN", "root");
-DEFINE("PASS", "Nu201251623!");
-DEFINE("DBNAME", "quizpi");
+//DEFINE("SERVER", "localhost");
+//DEFINE("USERN", "root");
+//DEFINE("PASS", "Nu201251623!");
+//DEFINE("DBNAME", "quizpi");
 
 
 // Try connection with db

@@ -39,10 +39,13 @@ if(array_key_exists('name', $_POST) == TRUE)
     } else {
         //echo $rowArray[0]->role;
         if ($rowArray[0]->role == "USER"){
+            $_SESSION['user_id'] = $rowArray[0]->id;
             $_SESSION['name'] = $rowArray[0]->userN;
             $_SESSION['pass'] = $rowArray[0]->pass;
             header('Location: ../FrontEnd/userHome.php'); //?credname=' . $rowArray[0]->userN);
         }else {
+            $_SESSION['user_id'] = $rowArray[0]->id;
+            $_SESSION['is_admin'] = true;
             header('Location: ../FrontEnd/adminHome.php');
         }
     }

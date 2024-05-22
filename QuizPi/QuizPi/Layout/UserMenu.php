@@ -11,4 +11,7 @@
     <div class="innerDivs">
         <a class="menuLink" href="../FrontEnd/Options.php">Option Menu</a>
     </div>
+    <div class="innerDivs">
+        <a class="menuLink" href="../BackEnd/UserLogout.php">Log Out</a>
+    </div>
 </div>
