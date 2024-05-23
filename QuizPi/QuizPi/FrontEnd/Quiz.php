@@ -18,19 +18,27 @@ if (array_key_exists('timer', $_POST)) {
 
 }
 ?>
-//toss timer for now
-
 <input type="hidden" id="difficulty" value="<?php echo $difficulty ?>" />
 <input type="hidden" id="category" value="<?php echo $category ?>" />
 <input type="hidden" id="amount" value="<?php echo $amount ?>" />
 <input type="hidden" id="timer" value="<?php echo $timer ?>" />
-<div id="quizSection" >
 
-</div>
+<h3 id="currentQuestions"></h3>
+<h3 id="correctQuestions"></h3>
+<br/>
+<div id="quizSection"></div>
+
+<h3 id="correct"></h3>
+<h3 id="wrong"></h3>
+<h3 id="Over"></h3>
+
+
 
 <script>
         const req = new XMLHttpRequest();
-
+        var currentQuestion = -1;
+        var correctAnswers = 0;
+        var myData;
         window.onload = () => {
         var diff = document.getElementById("difficulty").value;
         var cate = document.getElementById("category").value;
@@ -43,29 +51,61 @@ if (array_key_exists('timer', $_POST)) {
         req.send();
         };
 
-    function loadComplete(){
+    function loadComplete() {
            var myResponse;
-            var myData;
-            // create a table for display
-            var myReturn = "<table><tr><td>Id &nbsp;  &nbsp; </td><td>question &nbsp;  &nbsp; </td><td>answer &nbsp;  &nbsp; <tr><td>Id &nbsp; &nbsp;  &nbsp; </td></tr>";
             myResponse = req.responseText;
-            //alert("A: " + myResponse); // Use for debug
-            //document.getElementById("A").innerHTML = myResponse; // Display the json for debugging
             myData = JSON.parse(myResponse);
+            loadNextQuestion();      
+        }
 
-            // Loop through each json record and create the HTML
-            for (index in myData) {
-                myReturn += "<tr><td>" +
-                    myData[index].id + "</td><td>" +
-                    myData[index].question + "</td><td>" +
-                    myData[index].answer + "</td></tr>";
-                    myData[index].wrong_answers + "</td></tr>";
-
+    function loadNextQuestion() {
+        setTimeout(function () {
+               currentQuestion++;
+        if (myData.length > currentQuestion) {
+            var questionDisplay = "<div>" + myData[currentQuestion].question + "</div>";
+            var allAnswers = myData[currentQuestion].wrong_answers + "," + myData[currentQuestion].answer;
+            allAnswers = shuffleAnswers(allAnswers.split(","));
+            for (index in allAnswers) {
+                questionDisplay += "<button id='button-space' onClick=checkAnswer(this)>" + allAnswers[index] + "</button>";
             }
-            myReturn += "</table>";
-            document.getElementById("quizSection").innerHTML = myReturn; // Display table
+            document.getElementById("quizSection").innerHTML = questionDisplay;
+            document.getElementById("currentQuestions").innerText = "Current Question: " + currentQuestion + "/" + myData.length;
+            document.getElementById("correctQuestions").innerText = "Correct Answers: " + correctAnswers + "/" + myData.length;
+        } else {
+            document.getElementById("currentQuestions").innerText = "Current Question: " + currentQuestion + "/" + myData.length;
+            document.getElementById("correctQuestions").innerText = "Correct Answers: " + correctAnswers + "/" + myData.length;
+            endQuiz();
+        }
+       }, 1000);
     }
 
+    function checkAnswer(button) {
+        if (button.textContent == myData[currentQuestion].answer) {
+            correctAnswers++;
+            document.getElementById('correct').innerText = "That's Correct! ";
+            setTimeout(function () {
+                document.getElementById('correct').innerText = "";
+               }, 1000);
+        } else {
+            document.getElementById('wrong').innerText = "That's Incorrect! ";
+            setTimeout(function () {
+               document.getElementById('wrong').innerText = "";
+              }, 1000);
+        }
+        loadNextQuestion();
+    }
+
+     function shuffleAnswers(data) {
+        for (let i = data.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [data[i], data[j]] = [data[j], data[i]];
+        }
+        return data;
+    }
+
+    function endQuiz() {
+        document.getElementById("Over").innerText = "Quiz Complete, do like your score?";
+    }
 </script>
 <?php
 

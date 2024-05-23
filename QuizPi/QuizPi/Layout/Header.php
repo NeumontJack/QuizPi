@@ -13,9 +13,14 @@
 <html>
 <head>
     <title>QuizPi</title>
-    <a href="/FrontEnd/userHome.php">Home</a>(Will send to user homepage at the moment)
-    <a href="/FrontEnd/Scoreboard.php">Scoreboard</a>
-    <a href="/FrontEnd/Options.php">Settings</a>
+    <div class="navbar">
+        <div class="empty"></div>
+            <ul class="menu">
+                <li><a href="/FrontEnd/userHome.php">Home</a></li> 
+                <li><a href="/FrontEnd/Scoreboard.php">Scoreboard</a></li> 
+                <li><a href="/FrontEnd/Options.php">Quiz Options</a></li> 
+            </ul>
+    </div>
     <link rel="stylesheet" href="../Layout/StyleSheet.css">
 </head>
 <body>

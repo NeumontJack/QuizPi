@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../Layout/Header.php");
+//include_once("../Layout/Header.php");
 include("../Layout/UserMenu.php");
 include("../BackEnd/dbConnection.php");
 

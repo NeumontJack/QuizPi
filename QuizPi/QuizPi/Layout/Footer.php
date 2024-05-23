@@ -3,10 +3,12 @@
 
 <br/>
 <br/>
-<p>Coprighted @ 2024</p>
+<footer>
+    Coprighted @ 2024
+</footer>
 </body>
 </html>
 
 <?php
-    //tiny bar just the footer things pushed to bottom of screen
+   
 ?>

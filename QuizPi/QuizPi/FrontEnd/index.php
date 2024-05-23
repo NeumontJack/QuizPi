@@ -1,6 +1,6 @@
 <?php
 include_once("../Layout/Header.php");
-include("../Layout/Menu.php");
+//include("../Layout/Menu.php");
 //It's just one form, but a function
 //HERE
 //After SUBMIT click, check if person is a USER or ADMIN
@@ -18,41 +18,17 @@ include("../Layout/Menu.php");
 
 <h1>Welcome to the QuizPi</h1>
 <br/>
-<p>Think you know your stuff? Login to play our amazing and wacky quizzes and see your score!</p>
+<h3>Think you know your stuff? <br/>Login to play our amazing and wacky quizzes and see your score!</h3>
+<div>
 <form action="../BackEnd/QuizQueries.php" method="post">
 Username: <input type="text" name="name"><br>
 Password: <input type="password" name="password"><br>
 <input type="submit">
-send USER to respective homepage
 </form>
-
+</div>
 <br/>
-
-<a href="SignUp.php">Sign Up Here</a>
-
+<form><a href="SignUp.php">Sign Up Here</a></form>
 <br/>
-
-
-<!--<form action="adminHome.php" method="post">
-Username: <input type="text" name="name"><br>
-Password: <input type="password" name="password"><br>
-<input type="submit">
-send ADMIN to respective homepage
-</form>
-
-<br/>
-
-<p>Orrrrrrr, create an account because it's your first time with us!</p>
-<form action="" method="post">
-Full Name: <input type="text" name="name"><br>
-Username: <input type="text" name="username"><br>
-Password: <input type="password" name="password"><br>
-<input type="submit">
-send person to respective homepage, while logging them in
-</form>-->
-
-Modal display here would super cool, some pictures of the project
-
 <?php
 include_once("../Layout/Footer.php");
 

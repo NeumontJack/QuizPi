@@ -1,4 +1,76 @@
 ﻿body {
+    background-color: #A47F66;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+footer {
+    margin-top: auto;
+    color: white;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-left: 80px;
+}
+
+.menu, a {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding-left: 0;
+    gap: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+   margin: 0 15px;
+}
+
+.menu a {
+   text-decoration: none;
+   color: white; 
+}
+
+h1, h3, form, div{
+    text-align: center; 
+    color: white; 
+}
+
+#secondSelectionContainer {
+    display: none;
+}
+
+#thirdSelectionContainer {
+    display: none;
+}
+
+#fourthSelectionContainer {
+    display: none;
+}
+
+#button-space {
+    margin: 10px;
 }
 
 .userName {
