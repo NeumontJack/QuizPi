@@ -29,7 +29,7 @@ if ($result) {
 }
 
 mysqli_close($connection);
-echo $myJSON; //return data
+echo $myJSON;
 ?>
 
 

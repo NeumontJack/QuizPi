@@ -21,8 +21,12 @@ if (array_key_exists('timer', $_POST)) {
 <input type="hidden" id="difficulty" value="<?php echo $difficulty ?>" />
 <input type="hidden" id="category" value="<?php echo $category ?>" />
 <input type="hidden" id="amount" value="<?php echo $amount ?>" />
-<input type="hidden" id="timer" value="<?php echo $timer ?>" />
+<input type="hidden" id="userTimer" value="<?php echo $timer ?>" />
 
+<h3 id="displayTimer">0</h3>
+<br/>
+<h3 id="element"></h3>
+<br/>
 <h3 id="currentQuestions"></h3>
 <h3 id="correctQuestions"></h3>
 <br/>
@@ -39,11 +43,14 @@ if (array_key_exists('timer', $_POST)) {
         var currentQuestion = -1;
         var correctAnswers = 0;
         var myData;
-        window.onload = () => {
+        var totalTime = false;
+        var time = 0;
+    var timer = document.getElementById("displayTimer");
+    var interval;
+    window.onload = () => {
         var diff = document.getElementById("difficulty").value;
         var cate = document.getElementById("category").value;
         var size = document.getElementById("amount").value;
-        
         let url = "../Backend/GetQuiz.php?difficulty=" + diff + "&category=" + cate + "&amount=" + size;
         req.onload = loadComplete;
         req.open("GET", url);
@@ -52,10 +59,11 @@ if (array_key_exists('timer', $_POST)) {
         };
 
     function loadComplete() {
-           var myResponse;
-            myResponse = req.responseText;
-            myData = JSON.parse(myResponse);
-            loadNextQuestion();      
+        var myResponse;
+        myResponse = req.responseText;
+        myData = JSON.parse(myResponse);
+        loadNextQuestion();
+        timerFunction();
         }
 
     function loadNextQuestion() {
@@ -104,11 +112,34 @@ if (array_key_exists('timer', $_POST)) {
     }
 
     function endQuiz() {
+        clearInterval(interval);
+        let url = "../Backend/AddScore.php?score=" + correctAnswers;
+        req.open("GET", url);
+        req.responseType = "application/json";
+        req.send();
         document.getElementById("Over").innerText = "Quiz Complete, do like your score?";
     }
+
+    function timerFunction() {
+        var totalSeconds = document.getElementById("userTimer").value;
+        totalSeconds = Number(totalSeconds);
+        totalSeconds = totalSeconds * 1000;
+        interval = setInterval(function () {
+            time++;
+            timer.textContent = time;
+        }, 1000);
+        setTimeout(function() {
+            clearInterval(interval);
+            timeUp();
+        }, totalSeconds);
+    };
+
+    function timeUp() {
+         document.getElementById("element").innerText = "Time's Up!";
+         endQuiz();
+    }
+
 </script>
 <?php
-
 include_once("../Layout/Footer.php");
-
 ?>

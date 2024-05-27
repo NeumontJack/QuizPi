@@ -33,7 +33,9 @@ if(array_key_exists('name', $_POST) == TRUE)
     }
     mysqli_close($dbConn);
     if ($rowArray[0]->id == null) {
-        
+        $_SESSION['user_id'] = $rowArray[0]->id;
+        $_SESSION['name'] = $rowArray[0]->userN;
+        $_SESSION['pass'] = $rowArray[0]->pass;
         header('Location: ../FrontEnd/index.php');
         
     } else {

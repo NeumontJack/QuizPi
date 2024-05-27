@@ -79,4 +79,12 @@ function getQuiz($dbConn, $difficulty, $category, $amount)
     return mysqli_query($dbConn, $query);
 }
 
+function addScoreToUser($dbConn, $score, $username)
+{
+    $query = "UPDATE users
+            set score = " . $score . " WHERE username = '" .  $username . "'";            
+
+    return mysqli_query($dbConn, $query);
+}
+
 ?>

@@ -1,6 +1,5 @@
 <?php
 session_start();
-//include_once("../Layout/Header.php");
 include("../Layout/UserMenu.php");
 include("../BackEnd/dbConnection.php");
 
@@ -22,19 +21,20 @@ mysqli_close($dbConn);
 ?>
 
 
-<h1 class="userName">Welcome <?php echo $_SESSION['name']; ?></h1>
+<h1 class="userName">Nice to see you again <?php echo $_SESSION['name']; ?>!</h1>
 
 <img class="proPic" alt="ProfilePicture"/>
-<button>Update Image</button>
+<br/>
+<div>
+<button id="updateBtn">Update Image</button>
+<br/>
 <input type="text" id="imgUrl" placeholder="New Image URL"/>
+<br/>
 <button>Update</button>
+</div>
+
 
 <div class="scoreDiv"><h3 class="scoreHeader">Your Highest Score: <?php echo $rowArray[0]->score; ?></h3></div>
-
-<div><a class="ScoreBoardLink" href="Scoreboard.php">ScoreBoard</a></div>
-
-You're on the user homepage
-
 <?php
 include_once("../Layout/Footer.php");
 ?>

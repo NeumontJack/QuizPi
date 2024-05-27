@@ -1,6 +1,7 @@
 <?php
-include_once("../Layout/Header.php");
-//include("../Layout/UserMenu.php");
+//include_once("../Layout/Header.php");
+include("../Layout/UserMenu.php");
+
 ?>
 
 <h3>Choose your type of quiz!</h3>
@@ -17,7 +18,20 @@ include_once("../Layout/Header.php");
         
         <br/>
       <br/>
-      <div id="secondSelectionContainer">
+
+        <div id="secondSelectionContainer">
+            <label for="timer">Time:</label>
+            <select id="timer" name="timer">
+                <option value="" disabled selected>Select an option</option>
+                <option value="60">1 Minute</option>
+                <option value="300">5 Minutes</option>
+                <option value="420">7 Minutes</option>
+                <option value="600">10 Minutes</option>
+            </select>
+        </div>
+      <br/>
+
+      <div id="thirdSelectionContainer">
       <label for="category">Category:</label>
         <select id="category" name="category">
             <option value="" disabled selected>Select an option</option>
@@ -28,7 +42,7 @@ include_once("../Layout/Header.php");
         </select>
         </div>
       <br/>
-      <div id="thirdSelectionContainer">
+      <div id="fourthSelectionContainer">
       <label for="amount">Amount of Questions:</label>
         <select id="amount" name="amount">
             <option value="" disabled selected>Select an option</option>
@@ -42,16 +56,9 @@ include_once("../Layout/Header.php");
         <input type="submit" value="Submit">
     </form>
 <script>
-
-    function timer() {
-        var t = document.getElementById("timer").value;
-        console.log(t);
-    }
-
-
-    function showFormStuff(){
+  function showFormStuff(){
             var firstSelect = document.getElementById("difficulty").value;
-            //var secondSelect = document.getElementById("timer").value;
+            var secondSelect = document.getElementById("timer").value;
             var thirdSelection = document.getElementById("category").value;
             var fourthSelection = document.getElementById("amount").value;
             console.log("Difficulty: " + firstSelect);
@@ -62,16 +69,16 @@ include_once("../Layout/Header.php");
 
         function syncSelections() {
             var firstSelect = document.getElementById("difficulty");
-            //var secondSelect = document.getElementById("timer");
-            var secondSelection = document.getElementById("category");
-            var thirdSelection = document.getElementById("amount");
+            var secondSelect = document.getElementById("timer");
+            var thirdSelection = document.getElementById("category");
+            var fourthSelection = document.getElementById("amount");
             firstSelect.addEventListener("change", function() {
-                secondSelection.value = firstSelect.value;
-                thirdSelection.value = secondSelection.value;
-                //fourthSelection.value = thirdSelection.value;
+                secondSelect.value = firstSelect.value;
+                thirdSelection.value = secondSelect.value;
+                fourthSelection.value = thirdSelection.value;
                 secondSelectionContainer.style.display = "block";
                 thirdSelectionContainer.style.display = "block";
-                //fourthSelectionContainer.style.display = "block";
+                fourthSelectionContainer.style.display = "block";
             });
         }
     document.addEventListener("DOMContentLoaded", syncSelections);
