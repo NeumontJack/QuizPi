@@ -2,7 +2,7 @@
 include_once("../Layout/Header.php");
 ?>
 
-<h1>Welcome to the QuizPi</h1>
+<h2>Welcome to the QuizPi</h2>
 <br/>
 <h3>Think you know your stuff? <br/>Login to play our amazing and wacky quizzes and see your score!</h3>
 <div>

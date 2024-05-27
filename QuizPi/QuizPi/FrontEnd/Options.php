@@ -1,7 +1,6 @@
 <?php
-//include_once("../Layout/Header.php");
+include_once("../Layout/Header.php");
 include("../Layout/UserMenu.php");
-
 ?>
 
 <h3>Choose your type of quiz!</h3>

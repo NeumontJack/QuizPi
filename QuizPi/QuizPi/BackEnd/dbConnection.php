@@ -1,10 +1,16 @@
 <?php
 
 
+//DEFINE("SERVER", "localhost");
+//DEFINE("USERN", "root");
+//DEFINE("PASS", "Y2KBest!");
+//DEFINE("DBNAME", "quizusers");
+
 DEFINE("SERVER", "localhost");
 DEFINE("USERN", "root");
-DEFINE("PASS", "Y2KBest!");
+DEFINE("PASS", "Dr.Phid21@");
 DEFINE("DBNAME", "quizusers");
+
 function dbconnect()
 {
     $dbConn = mysqli_connect(SERVER, USERN, PASS, DBNAME);
@@ -49,7 +55,8 @@ function getLoginConformation($dbConn, $userN, $pass)
             'userN', username,
             'pass', password,
             'score', score,
-            'role', role)
+            'role', role,
+            'img', img)
             from users WHERE username = '". $userN ."' and password = '". $pass ."'";
 
     return mysqli_query($dbConn, $query);
@@ -82,9 +89,44 @@ function getQuiz($dbConn, $difficulty, $category, $amount)
 function addScoreToUser($dbConn, $score, $username)
 {
     $query = "UPDATE users
-            set score = " . $score . " WHERE username = '" .  $username . "'";            
+            set score = " . $score . " WHERE username = '" .  $username . "'";   
+}
+
+function upImage($dbConn, $info)
+{
+    $infolist = (explode("///", $info));
+
+    $query = "UPDATE users SET users.img= '" . $infolist[1] . "' WHERE users.id= '" . $infolist[0] . "';";
 
     return mysqli_query($dbConn, $query);
 }
+
+function getUsers($dbConn, $info) {
+    
+    $query = "SELECT JSON_OBJECT(
+            'id', id,
+            'userN', username,
+            'score', score)
+            from users WHERE username = '" . $info . "'";
+
+    return mysqli_query($dbConn, $query);
+}
+
+function getCss($dbConn) {
+
+    $query = "SELECT JSON_OBJECT(
+            'css', css)
+            from currentcss WHERE id = '1'";
+
+    return mysqli_query($dbConn, $query);
+}
+
+function upCss($dbConn, $info) {
+    
+    $query = "UPDATE currentcss SET currentcss.css='". $info ."' WHERE currentcss.id = '1'";
+
+    return mysqli_query($dbConn, $query);
+}
+
 
 ?>

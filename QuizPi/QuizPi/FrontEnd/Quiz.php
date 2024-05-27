@@ -1,5 +1,6 @@
 <?php
 include_once("../Layout/Header.php");
+include("../Layout/UserMenu.php");
 
 
 if (array_key_exists('difficulty', $_POST)) {

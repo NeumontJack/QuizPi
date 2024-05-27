@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("../Layout/Header.php");
 
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || !$_SESSION['is_admin']) {

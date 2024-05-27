@@ -87,4 +87,47 @@ if (array_key_exists('Sname', $_POST) == TRUE) {
     }
 }
 
+if (array_key_exists('upPic', $_GET) == TRUE)
+{
+    $info = $_GET['upPic'];
+
+    $dbConn = dbconnect();
+
+    upImage($dbConn, $info);
+
+    mysqli_close($dbConn);
+}
+
+if (array_key_exists('css', $_GET) == TRUE) {
+
+    $info = $_GET['css'];
+
+    $dbConn = dbconnect();
+
+    upCss($dbConn, $info);
+
+    mysqli_close($dbConn);
+}
+
+if (array_key_exists('find', $_GET) == TRUE) {
+    
+    $info = $_GET['find'];
+
+    $dbConn = dbconnect();
+
+    $feedBack = getUsers($dbConn, $info);
+
+    if ($feedBack) {
+        // loop through each record and format the json (apply any needed business logic)
+        while ($row = mysqli_fetch_array($feedBack)) {
+            $rowArray[] = json_decode($row[0]);
+        }
+        $myGet = json_encode($rowArray);
+    }
+
+    mysqli_close($dbConn);
+}
+
+echo $myGet;
+
 ?>
