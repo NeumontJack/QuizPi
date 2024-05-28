@@ -36,10 +36,10 @@ include('db.php');
         </div>
 
         <div id="adminButtons">
-            <button onClick="location.href='create_quiz.php'">Create Quiz</button>
-            <button onClick="location.href='edit_quiz.php'">Edit Quiz</button>
-            <button onClick="location.href='delete_quiz.php'">Delete Quiz</button>
-            <button onClick="location.href='manage_scores.php'">Manage Scores</button>
+            <button onClick="location.href='../BackEnd/create_quiz.php'">Create Quiz</button>
+            <button onClick="location.href='../BackEnd/edit_quiz.php'">Edit Quiz</button>
+            <button onClick="location.href='../BackEnd/delete_quiz.php'">Delete Quiz</button>
+            <button onClick="location.href='../BackEnd/manage_scores.php'">Manage Scores</button>
         </div>
 
     </div>
