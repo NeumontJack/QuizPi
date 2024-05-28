@@ -34,6 +34,14 @@ include('db.php');
             <h3>Manage Scores</h3>
             <a href="Scoreboard.php" class="btn">View/Edit Scores</a>
         </div>
+
+        <div id="adminButtons">
+            <button onClick="location.href='create_quiz.php'">Create Quiz</button>
+            <button onClick="location.href='edit_quiz.php'">Edit Quiz</button>
+            <button onClick="location.href='delete_quiz.php'">Delete Quiz</button>
+            <button onClick="location.href='manage_scores.php'">Manage Scores</button>
+        </div>
+
     </div>
 
     <?php include('Footer.php'); ?>

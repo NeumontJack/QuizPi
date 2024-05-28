@@ -10,48 +10,50 @@ if (!isset($_SESSION['user_id']) || !$_SESSION['is_admin']) {
 
 include('../dbConnection.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['quiz_id'])) {
-    $quiz_id = $_POST['quiz_id'];
-    $title = $_POST['title'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['question_id'])) {
+    $question_id = $_POST['question_id'];
+    $question_text = $_POST['question_text'];
     $category = $_POST['category'];
     $difficulty = $_POST['difficulty'];
+    $correct_answer = $_POST['correct_answer'];
+    $wrong_answers = $_POST['wrong_answers'];
 
-    $stmt = $conn->prepare("UPDATE Quizzes SET title = ?, category = ?, difficulty = ? WHERE id = ?");
-    $stmt->bind_param("sssi", $title, $category, $difficulty, $quiz_id);
+    $stmt = $conn->prepare("UPDATE Questions SET question_text = ?, category = ?, difficulty = ?, correct_answer = ?, wrong_answers = ? WHERE id = ?");
+    $stmt->bind_param("sssssi", $question_text, $category, $difficulty, $correct_answer, $wrong_answers, $question_id);
 
     if ($stmt->execute()) {
-        echo "Quiz updated successfully!";
+        echo "Question updated successfully!";
     } else {
         echo "Error: " . $stmt->error;
     }
     $stmt->close();
 }
 
-$quizzes = $conn->query("SELECT * FROM Quizzes");
+$questions = $conn->query("SELECT * FROM Questions");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Quiz</title>
+    <title>Edit Question</title>
 </head>
 <body>
-    <h2>Edit a Quiz</h2>
+    <h2>Edit a Question</h2>
 
     <form method="post" action="">
-        <label for="quiz_id">Select Quiz:</label>
-        <select id="quiz_id" name="quiz_id" onchange="loadQuizDetails(this.value)">
+        <label for="question_id">Select Question:</label>
+        <select id="question_id" name="question_id" onchange="loadQuestionDetails(this.value)">
             <option value="">Select...</option>
-            <?php while ($quiz = $quizzes->fetch_assoc()): ?>
-                <option value="<?php echo $quiz['id']; ?>"><?php echo $quiz['title']; ?></option>
+            <?php while ($question = $questions->fetch_assoc()): ?>
+                <option value="<?php echo $question['id']; ?>"><?php echo $question['question_text']; ?></option>
             <?php endwhile; ?>
         </select>
         <br>
 
-        <div id="quizDetails" style="display: none;">
-            <label for="title">Quiz Title:</label>
-            <input type="text" id="title" name="title" required><br>
+        <div id="questionDetails" style="display: none;">
+            <label for="question_text">Question:</label>
+            <input type="text" id="question_text" name="question_text" required><br>
 
             <label for="category">Category:</label>
             <input type="text" id="category" name="category" required><br>
@@ -59,26 +61,34 @@ $quizzes = $conn->query("SELECT * FROM Quizzes");
             <label for="difficulty">Difficulty:</label>
             <input type="text" id="difficulty" name="difficulty" required><br>
 
-            <input type="submit" value="Update Quiz">
+            <label for="correct_answer">Correct Answer:</label>
+            <input type="text" id="correct_answer" name="correct_answer" required><br>
+
+            <label for="wrong_answers">Wrong Answers (comma-separated):</label>
+            <input type="text" id="wrong_answers" name="wrong_answers" required><br>
+
+            <input type="submit" value="Update Question">
         </div>
     </form>
 
     <script>
-        function loadQuizDetails(quizId) {
-            if (quizId === "") {
-                document.getElementById("quizDetails").style.display = "none";
+        function loadQuestionDetails(questionId) {
+            if (questionId === "") {
+                document.getElementById("questionDetails").style.display = "none";
                 return;
             }
 
             const xhr = new XMLHttpRequest();
             xhr.onload = function() {
-                const quiz = JSON.parse(this.responseText);
-                document.getElementById("title").value = quiz.title;
-                document.getElementById("category").value = quiz.category;
-                document.getElementById("difficulty").value = quiz.difficulty;
-                document.getElementById("quizDetails").style.display = "block";
+                const question = JSON.parse(this.responseText);
+                document.getElementById("question_text").value = question.question_text;
+                document.getElementById("category").value = question.category;
+                document.getElementById("difficulty").value = question.difficulty;
+                document.getElementById("correct_answer").value = question.correct_answer;
+                document.getElementById("wrong_answers").value = question.wrong_answers;
+                document.getElementById("questionDetails").style.display = "block";
             };
-            xhr.open("GET", `../Backend/GetQuiz.php?quiz_id=${quizId}`);
+            xhr.open("GET", `../Backend/GetQuiz.php?question_id=${questionId}`);
             xhr.send();
         }
     </script>

@@ -2,9 +2,6 @@
 include_once("../Layout/Header.php");
 include("../Layout/UserMenu.php");
 
-// Check if the user is logged in and if they are an admin
-$is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'];
-
 if (array_key_exists('difficulty', $_POST)) {
     $difficulty = $_POST['difficulty']; //this is how you get parameters
 }
@@ -38,16 +35,6 @@ if (array_key_exists('timer', $_POST)) {
 <h3 id="correct"></h3>
 <h3 id="wrong"></h3>
 <h3 id="Over"></h3>
-
-<?php if ($is_admin): ?>
-    <!-- Admin-specific CRUD buttons -->
-    <div id="adminButtons">
-        <button onClick="location.href='create_quiz.php'">Create Quiz</button>
-        <button onClick="location.href='edit_quiz.php'">Edit Quiz</button>
-        <button onClick="location.href='delete_quiz.php'">Delete Quiz</button>
-        <button onClick="location.href='manage_scores.php'">Manage Scores</button>
-    </div>
-<?php endif; ?>
 
 <script>
         const req = new XMLHttpRequest();
